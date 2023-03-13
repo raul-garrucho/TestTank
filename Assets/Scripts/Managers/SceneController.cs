@@ -5,8 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    public void SceneChanger(string scene)
+    public void OnePlayerMode()
     {
-         
+        SceneManager.LoadScene("Gameplay");
+    }
+    public void twoPlayerMode()
+    {
+        SceneManager.LoadScene("Gameplay");
+    }
+    public void ExitGame()
+    {
+        
     }
 }
