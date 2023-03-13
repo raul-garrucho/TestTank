@@ -22,7 +22,7 @@ public class Shield : MonoBehaviour
         {
             PlayerStats playerStats = other.GetComponent<PlayerStats>();
             playerStats.lifes++;
-            //spawnManager.activeBoost = false;
+            spawnManager.activeBoost = false;
             Destroy(gameObject);
         }
     }
