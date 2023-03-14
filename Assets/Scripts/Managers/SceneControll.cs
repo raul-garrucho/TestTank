@@ -16,11 +16,16 @@ public class SceneControll : MonoBehaviour
         singleplayer = true;
         SceneManager.LoadScene("Gameplay");
     }
-    public void twoPlayerMode()
+    public void TwoPlayerMode()
     {
         singleplayer = false;
         multiplayer = true;
         SceneManager.LoadScene("Gameplay");   
+    }
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+        Destroy(gameObject);
     }
     public void ExitGame()
     {
