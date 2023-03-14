@@ -25,7 +25,9 @@ public class PlayerAttack : MonoBehaviour
     {
         if (amountOfAmmo > 0)
         {
-            Instantiate(bulletPrefab,firePoint);
+            // Instantiate(bulletPrefab,firePoint);
+            Quaternion lookDirectio = Quaternion.LookRotation(transform.forward);
+            GameObject bullet = Instantiate(bulletPrefab,firePoint.position,lookDirectio);
             amountOfAmmo--;
             actualtime = 0;
         }

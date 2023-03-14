@@ -5,14 +5,18 @@ using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
-    public int lifes,amountOfAmmo;
+    public int hp,amountOfAmmo,lifes;
     public Image shieldImage,ammoImage;
-    public Text amountOfAmmoText;
+    public Text amountOfAmmoText,lifesText;
     private PlayerAttack playerAttack;
+    public Transform respawnPoint;
+    public GameObject winPanel;
 
     private void Awake()
     {
         playerAttack = transform.GetComponent<PlayerAttack>();
+        winPanel.SetActive(false);
+        lifes = 3;
     }
     private void Update()
     {
@@ -23,16 +27,20 @@ public class PlayerStats : MonoBehaviour
     {
         amountOfAmmo = playerAttack.amountOfAmmo;
         ammoImage.fillAmount = playerAttack.actualtime / playerAttack.readytime;
-        amountOfAmmoText.text = amountOfAmmo.ToString(); 
-        if (lifes > 1) shieldImage.enabled = true;
+        amountOfAmmoText.text = amountOfAmmo.ToString();
+        lifesText.text = lifes.ToString();
+        if (hp > 1) shieldImage.enabled = true;
         else shieldImage.enabled = false;
     }
     private void statsController()
     {
-       lifes = Mathf.Clamp(lifes, 0, 2);
-            if (lifes < 1)
-            {
-                //Dead
-            }
+        hp = Mathf.Clamp(hp, 0, 2);
+        if (hp < 1)
+        {
+            lifes--;
+            hp = 1;
+            transform.position = respawnPoint.position;
+        }
+        if (lifes < 1) winPanel.SetActive(true);
     }
 }

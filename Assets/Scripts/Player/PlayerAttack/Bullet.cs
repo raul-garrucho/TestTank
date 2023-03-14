@@ -18,14 +18,14 @@ public class Bullet : MonoBehaviour
     }
     private void Update()
     {
-        transform.Rotate(transform.right * 0.15f);
+        transform.Rotate(transform.right * 0.25f);
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             PlayerStats playerStats = other.GetComponent<PlayerStats>();
-            playerStats.lifes--;
+            playerStats.hp--;
         }
         if (other.tag == "Cactus") other.GetComponent<Cactus>().destroyCactus = true;
         Destroy(gameObject);

@@ -21,7 +21,7 @@ public class Shield : MonoBehaviour
         if (other.tag == "Player")
         {
             PlayerStats playerStats = other.GetComponent<PlayerStats>();
-            playerStats.lifes++;
+            playerStats.hp++;
             spawnManager.activeBoost = false;
             Destroy(gameObject);
         }
