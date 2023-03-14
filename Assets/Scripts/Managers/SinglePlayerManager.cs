@@ -49,8 +49,8 @@ public class SinglePlayerManager : MonoBehaviour
     }
     private void CreateCactus()
     {
-        xOffset = Random.Range(100, -100);
-        zOffset = Random.Range(100, -100);
+        xOffset = Random.Range(75, -75);
+        zOffset = Random.Range(75, -75);
         Vector3 ramdonPosition = transform.position + new Vector3(xOffset, 0, zOffset);
         GameObject cactus = Instantiate(cactusPrefab, ramdonPosition, Quaternion.identity, transform);
         numberCactus++;

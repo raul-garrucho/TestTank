@@ -11,6 +11,8 @@ public class PlayerMovemetn : MonoBehaviour
     private InputManager InputManager;
     public float maxtime, actualtime;
     public bool boostActive;
+   
+
     private void Awake()
     {
         rb = transform.GetComponent<Rigidbody>();
@@ -18,7 +20,7 @@ public class PlayerMovemetn : MonoBehaviour
         boostActive = false;
     }
     private void Update()
-    {
+    {   
         acceleratioInput = InputManager.acceleratioInput;
         rotationInput = InputManager.rotationInput;
         if (boostActive) BoostController();
@@ -27,7 +29,7 @@ public class PlayerMovemetn : MonoBehaviour
     private void TankMovement()
     {
         transform.Rotate(Vector3.up * rotationInput*rotationSpeed);//Rotacion
-        if(rotationInput < 0.1f && rotationInput > -0.1f) rb.velocity = transform.forward * speed * acceleratioInput*speedModifier;//Move forward
+        if(rotationInput < 0.3f && rotationInput > -0.3f) rb.velocity = transform.forward * speed * acceleratioInput*speedModifier;//Move forward
     }
     private void BoostController()
     {
