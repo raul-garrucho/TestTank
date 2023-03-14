@@ -5,11 +5,11 @@ using UnityEngine;
 public class Cactus : MonoBehaviour
 {
     public bool destroyCactus;
-    private SinglePlayerManager singlePlayerManager;
+    private PlayerManager singlePlayerManager;
 
     private void Awake()
     {
-        singlePlayerManager = transform.GetComponentInParent<SinglePlayerManager>();
+        singlePlayerManager = transform.GetComponentInParent<PlayerManager>();
     }
     private void Update()
     {

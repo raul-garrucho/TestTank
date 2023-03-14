@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+//Control de Inputs
 public class InputManager : MonoBehaviour
 {
     public float acceleratioInput, rotationInput;

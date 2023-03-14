@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+//Cambio de escenas y conservar datos entre ellas
 public class SceneControll : MonoBehaviour
 {
     public bool singleplayer, multiplayer;
@@ -29,6 +29,6 @@ public class SceneControll : MonoBehaviour
     }
     public void ExitGame()
     {
-        
+        Application.Quit();
     }
 }

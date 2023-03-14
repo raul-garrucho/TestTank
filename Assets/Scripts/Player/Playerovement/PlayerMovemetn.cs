@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//Movimiento de los tanques
 public class PlayerMovemetn : MonoBehaviour
 {
     private Rigidbody rb;
@@ -28,8 +28,10 @@ public class PlayerMovemetn : MonoBehaviour
     }
     private void TankMovement()
     {
-        transform.Rotate(Vector3.up * rotationInput*rotationSpeed);//Rotacion
-        if(rotationInput < 0.3f && rotationInput > -0.3f) rb.velocity = transform.forward * speed * acceleratioInput*speedModifier;//Move forward
+        //intenta recerear el movimiento de un tanque real, estos no pueden girar a la vez que avanzan.
+        transform.Rotate(Vector3.up * rotationInput*rotationSpeed);//Rotation
+        if (rotationInput < 0.3f && rotationInput > -0.3f) rb.velocity = transform.forward * speed * acceleratioInput * speedModifier;//Move forward
+        else rb.velocity = Vector3.zero;
     }
     private void BoostController()
     {

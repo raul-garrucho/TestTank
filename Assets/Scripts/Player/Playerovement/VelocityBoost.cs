@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//Boost de velocidad
 public class VelocityBoost : MonoBehaviour
 {
-
     public float rotationSpeed;
     public float boostVelocity,maxTimeOfBoost;
     private SpawnManager spawnManager;

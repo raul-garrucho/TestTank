@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//Escudo que proteje de un hit al jugador
 public class Shield : MonoBehaviour
 {
     public float rotationSpeed;

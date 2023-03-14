@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-
-public class SinglePlayerManager : MonoBehaviour
+//Encargado de cambiar entre  modos de juego y controlar los diversos valores
+public class PlayerManager : MonoBehaviour
 {
     public bool playingGame, singlePlayerMode, multiplayerMode;
     private float xOffset, zOffset,currentTime;

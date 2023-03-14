@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//Recarga la municion de los tanques
 public class AmmoRefill : MonoBehaviour
 {
     public float rotationSpeed;

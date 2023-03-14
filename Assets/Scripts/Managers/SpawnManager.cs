@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+// spawn de los diferenrtes boosts
 public class SpawnManager : MonoBehaviour
 {
     public GameObject[] boostPerfabsList;

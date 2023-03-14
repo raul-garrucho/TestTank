@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     public int amountOfAmmo;
     private InputManager inputManager;
     public float readytime, actualtime;
+    public string shooterId;
  
     private void Awake()
     {
@@ -25,9 +26,9 @@ public class PlayerAttack : MonoBehaviour
     {
         if (amountOfAmmo > 0)
         {
-            // Instantiate(bulletPrefab,firePoint);
             Quaternion lookDirectio = Quaternion.LookRotation(transform.forward);
-            GameObject bullet = Instantiate(bulletPrefab,firePoint.position,lookDirectio);
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, lookDirectio);
+            bullet.GetComponent<Bullet>().setId(shooterId);
             amountOfAmmo--;
             actualtime = 0;
         }

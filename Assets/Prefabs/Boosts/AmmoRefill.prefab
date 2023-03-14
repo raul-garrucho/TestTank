@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35dad7aaf95c6f4fadad506a4b96401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 2.5
+  rotationSpeed: 1.5
   numberOfRefill: 5
 --- !u!65 &646490144874415364
 BoxCollider:
