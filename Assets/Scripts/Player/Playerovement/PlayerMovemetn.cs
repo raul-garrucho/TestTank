@@ -21,17 +21,16 @@ public class PlayerMovemetn : MonoBehaviour
     }
     private void Update()
     {   
-        acceleratioInput = InputManager.acceleratioInput;
-        rotationInput = InputManager.rotationInput;
-        if (boostActive) BoostController();
         TankMovement();
     }
     private void TankMovement()
     {
+        if (boostActive) BoostController();
         //intenta recerear el movimiento de un tanque real, estos no pueden girar a la vez que avanzan.
+        rotationInput =  InputManager.movementInput.x;
         transform.Rotate(Vector3.up * rotationInput*rotationSpeed);//Rotation
-        if (rotationInput < 0.3f && rotationInput > -0.3f) rb.velocity = transform.forward * speed * acceleratioInput * speedModifier;//Move forward
-        else rb.velocity = Vector3.zero;
+        if (rotationInput < 0.3f && rotationInput > -0.3f) rb.velocity = transform.forward * speed * InputManager.movementInput.y * speedModifier;//Move forward
+        else rb.velocity = Vector3.zero;//Stop Movement
     }
     private void BoostController()
     {

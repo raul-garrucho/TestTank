@@ -28,7 +28,7 @@ public class PlayerStats : MonoBehaviour
     private void UiController()
     {
         amountOfAmmo = playerAttack.amountOfAmmo;
-        ammoImage.fillAmount = playerAttack.actualtime / playerAttack.readytime;
+        ammoImage.fillAmount = playerAttack.actualRechargTime / playerAttack.rechargtime;
         amountOfAmmoText.text = amountOfAmmo.ToString();
         lifesText.text = lifes.ToString();
         if (hp > 1) shieldImage.enabled = true;

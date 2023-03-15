@@ -11,19 +11,11 @@ public class Bullet : MonoBehaviour
     private void Awake()
     {
         rb = transform.GetComponent<Rigidbody>();
+        rb.AddForce(transform.forward*shootForce,ForceMode.Impulse);
     }
-
     public void setId(string id)
     {
         shooterId =  id;
-    }
-    private void Start()
-    {
-        rb.AddForce(transform.forward*shootForce,ForceMode.Impulse);
-    }
-    private void Update()
-    {
-        transform.Rotate(transform.right * 0.25f);
     }
     private void OnTriggerEnter(Collider other)
     {
