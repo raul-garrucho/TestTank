@@ -17,7 +17,7 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         winPanel.SetActive(false);
-        sceneControll = FindAnyObjectByType<SceneControll>();
+        sceneControll = FindObjectOfType<SceneControll>();
         singlePlayerMode = sceneControll.singleplayer;
         multiplayerMode = sceneControll.multiplayer;
 

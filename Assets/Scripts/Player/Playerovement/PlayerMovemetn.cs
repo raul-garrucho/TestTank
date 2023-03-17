@@ -19,7 +19,7 @@ public class PlayerMovemetn : MonoBehaviour
         InputManager = transform.GetComponent<InputManager>();
         boostActive = false;
     }
-    private void Update()
+    private void FixedUpdate()
     {   
         TankMovement();
     }
@@ -28,9 +28,17 @@ public class PlayerMovemetn : MonoBehaviour
         if (boostActive) BoostController();
         //intenta recerear el movimiento de un tanque real, estos no pueden girar a la vez que avanzan.
         rotationInput =  InputManager.movementInput.x;
-        transform.Rotate(Vector3.up * rotationInput*rotationSpeed);//Rotation
-        if (rotationInput < 0.3f && rotationInput > -0.3f) rb.velocity = transform.forward * speed * InputManager.movementInput.y * speedModifier;//Move forward
-        else rb.velocity = Vector3.zero;//Stop Movement
+
+        rb.AddTorque(Vector3.up * rotationInput * rotationSpeed, ForceMode.VelocityChange);
+
+        if(rotationInput == 0)
+            rb.angularVelocity = Vector3.zero;        
+
+        if (InputManager.movementInput.y != 0)
+        {
+            rb.AddForce(transform.forward * speed * InputManager.movementInput.y * speedModifier, ForceMode.VelocityChange);//Move forward
+        }
+
     }
     private void BoostController()
     {
