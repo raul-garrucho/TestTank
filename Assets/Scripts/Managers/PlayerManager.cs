@@ -1,81 +1,93 @@
 using UnityEngine;
 using UnityEngine.UI;
 //Encargado de cambiar entre  modos de juego y controlar los diversos valores
-public class PlayerManager : MonoBehaviour
+namespace Tankprototipe
 {
-    public bool playingGame, singlePlayerMode, multiplayerMode;
-    private float xOffset, zOffset,currentTime;
-    public int distroyedCactusNumber, numberCactus;
-    public GameObject winPanel;
-    public GameObject cactusPrefab;
-    
-    public GameObject[] multiplayerElementsList;
-    public GameObject[] singlePlayerElementsList;
-    public Text timeText,finalTimeText, cactusNumText;
-    public Camera player1Camera, player2Camera;
-    private SceneControll sceneControll;
-    private void Awake()
+    public class PlayerManager : MonoBehaviour
     {
-        winPanel.SetActive(false);
-        sceneControll = FindObjectOfType<SceneControll>();
-        singlePlayerMode = sceneControll.singleplayer;
-        multiplayerMode = sceneControll.multiplayer;
+        [SerializeField] private LevelManager levelManager;
+        public LeaderBoardPanel leaderBoardPanel;
+        private bool playingGame;
+        private float currentTime;
+        public int distroyedCactusNumber, numberCactus;
+        public GameObject winPanel;
+        public GameObject cactusPrefab,playerPrefab;
+        public GameObject[] multiplayerElementsList;
+        public GameObject[] singlePlayerElementsList;
+        public Text timeText, cactusNumText;
+        public Camera player1Camera, player2Camera;
 
-        for (int i = 0; i < multiplayerElementsList.Length; i++)
+        private void Awake()
         {
-            multiplayerElementsList[i].SetActive(multiplayerMode);
+            Disableall();
+            winPanel.SetActive(false);
+            switch (levelManager.gamemodeSelected)
+            {
+                case "SinglePlayer":
+                    OnePlayerInitialize();
+                    for (int i = 0; i < singlePlayerElementsList.Length; i++)
+                    {
+                        singlePlayerElementsList[i].SetActive(true);
+                    }
+                    break;
+                case "MultiPlayer":
+                    player1Camera.rect = new Rect(0, -0.5f, 1, 1);
+                    player2Camera.rect = new Rect(0, 0.5f, 1, 1);
+                    for (int i = 0; i < multiplayerElementsList.Length; i++)
+                    {
+                        multiplayerElementsList[i].SetActive(true);
+                    }
+                    break;
+            }
         }
-        for (int i = 0; i < singlePlayerElementsList.Length; i++)
-        {
-            singlePlayerElementsList[i].SetActive(singlePlayerMode);
-        }
-        playingGame = singlePlayerMode;
-        /*
-        singlePlayerUI.SetActive(singlePlayerMode);
-        multiplayerUi.SetActive(multiplayerMode);
-        player2.SetActive(multiplayerMode);
-        player2Ui.SetActive(multiplayerMode);*/
-       
-        if (multiplayerMode)
-        {
-            player1Camera.rect = new Rect(0, -0.5f, 1, 1);
-            player2Camera.rect = new Rect(0, 0.5f, 1, 1);
-        }
-    }
 
-    private void Update()
-    {
-        if (singlePlayerMode) SinglePlayerMode();
-    }
-    private void CreateCactus()
-    {
-        xOffset = Random.Range(75, -75);
-        zOffset = Random.Range(75, -75);
-        Vector3 ramdonPosition = transform.position + new Vector3(xOffset, 0, zOffset);
-        GameObject cactus = Instantiate(cactusPrefab, ramdonPosition, Quaternion.identity, transform);
-        numberCactus++;
-    }
-    private void UiManager()
-    {
-        cactusNumText.text = distroyedCactusNumber.ToString();
-        float minutes = Mathf.FloorToInt(currentTime / 60);
-        float seconds = Mathf.FloorToInt(currentTime % 60);
-        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-        finalTimeText.text= string.Format("{0:00}:{1:00}", minutes, seconds);
-    }
-    private void SinglePlayerMode()
-    {
-        if (numberCactus < 5) CreateCactus();
-        if (playingGame) currentTime += Time.deltaTime; //TimeCount
-        if (distroyedCactusNumber >= 20)//EndGame
+        private void Update()
         {
-            playingGame = false;
-            winPanel.SetActive(true);
+            if (playingGame) SinglePlayerMode();
         }
-        UiManager();
-    }
-    public void Menu()
-    {
-        sceneControll.ReturnToMenu();
+        private void SinglePlayerMode()
+        {
+            currentTime += Time.deltaTime; //TimeCount
+            if (numberCactus < 5) CreateCactus();
+            if (distroyedCactusNumber >= 20)//EndGame
+            {
+                leaderBoardPanel.Initialize(currentTime);
+                playingGame = false;
+            }
+            UiManager();
+        }
+        private void CreateCactus()
+        {
+            float xOffset, zOffset;
+            xOffset = Random.Range(75, -75);
+            zOffset = Random.Range(75, -75);
+            Vector3 ramdonPosition = transform.position + new Vector3(xOffset, 0, zOffset);
+            GameObject cactus = Instantiate(cactusPrefab, ramdonPosition, Quaternion.identity, transform);
+            numberCactus++;
+        }
+        private void UiManager()
+        {
+            cactusNumText.text = distroyedCactusNumber.ToString();
+            float minutes = Mathf.FloorToInt(currentTime / 60);
+            float seconds = Mathf.FloorToInt(currentTime % 60);
+            timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
+        public void OnePlayerInitialize()
+        {
+            playingGame = true;
+            currentTime = 0;
+            distroyedCactusNumber = 0;
+        }
+        private void Disableall()
+        {
+            for (int i = 0; i < singlePlayerElementsList.Length; i++)
+            {
+                singlePlayerElementsList[i].SetActive(false);
+            }
+            for (int i = 0; i < multiplayerElementsList.Length; i++)
+            {
+                multiplayerElementsList[i].SetActive(false);
+            }
+        }
     }
 }

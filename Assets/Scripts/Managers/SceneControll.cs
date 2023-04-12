@@ -5,30 +5,26 @@ using UnityEngine.SceneManagement;
 //Cambio de escenas y conservar datos entre ellas
 public class SceneControll : MonoBehaviour
 {
-    public bool singleplayer, multiplayer;
-    private void Start()
+    [SerializeField] private LevelManager levelManager;
+    public void ChangeScene(string gamemode)
     {
-       DontDestroyOnLoad(gameObject);
+        switch (gamemode)
+        {
+            case "SinglePlayer":
+                LoadGame(gamemode);
+                break;
+            case "MultiPlayer":
+                LoadGame(gamemode);
+                break;
+            case "Exit":
+                Application.Quit();
+                break;
+        }
     }
-    public void OnePlayerMode()
+    private void LoadGame(string data)
     {
-        multiplayer = false;
-        singleplayer = true;
+        levelManager.gamemodeSelected = data;
         SceneManager.LoadScene("Gameplay");
     }
-    public void TwoPlayerMode()
-    {
-        singleplayer = false;
-        multiplayer = true;
-        SceneManager.LoadScene("Gameplay");   
-    }
-    public void ReturnToMenu()
-    {
-        SceneManager.LoadScene("MainMenu");
-        Destroy(gameObject);
-    }
-    public void ExitGame()
-    {
-        Application.Quit();
-    }
+
 }
