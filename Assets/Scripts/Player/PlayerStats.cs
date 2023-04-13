@@ -48,6 +48,8 @@ public class PlayerStats : MonoBehaviour
         {
             winPanel.SetActive(true);
             winnerText.text = attackerId;
+            lifes = 3;
+            FindObjectOfType<Gameplay>().EndTwoPlayerGame();
         }
     }
 }

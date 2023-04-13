@@ -5,20 +5,10 @@ using UnityEngine;
 
 public class Cactus : MonoBehaviour
 {
-    public bool destroyCactus;
-    private PlayerManager singlePlayerManager;
-
-    private void Awake()
+    public void cactusDestroy()
     {
-        singlePlayerManager = transform.GetComponentInParent<PlayerManager>();
+        GetComponentInParent<CactusManager>().DestroyCactus();
+        Destroy(gameObject);
     }
-    private void Update()
-    {
-        if (destroyCactus)
-        {
-            singlePlayerManager.distroyedCactusNumber++;
-            singlePlayerManager.numberCactus--;
-            Destroy(gameObject);
-        }
-    }
+    
 }

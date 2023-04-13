@@ -18,10 +18,10 @@ namespace Tankprototipe
             leaderBoard.Addscore(score);
             gameObject.SetActive(true);
             RefreshUi(score);
-            foreach (Transform position in rankingSpot)
-            {
-                rankingTextList.Add(position.GetComponent<Text>());
-            }
+            //foreach (Transform position in rankingSpot)
+           // {
+           //     rankingTextList.Add(position.GetComponent<Text>());
+           // }
         }
         private void RefreshUi(float score)
         {
@@ -37,7 +37,7 @@ namespace Tankprototipe
             switch (action)
             {
                 case "Retry":
-                    FindObjectOfType<PlayerManager>().OnePlayerInitialize();
+                    FindObjectOfType<Gameplay>().OnePlayerGame();
                     break;
                 case "ReturnToMenu":
                     SceneManager.LoadScene("MainMenu");

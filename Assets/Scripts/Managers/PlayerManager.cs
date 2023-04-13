@@ -5,9 +5,9 @@ namespace Tankprototipe
 {
     public class PlayerManager : MonoBehaviour
     {
+        private bool playingGame;
         [SerializeField] private LevelManager levelManager;
         public LeaderBoardPanel leaderBoardPanel;
-        private bool playingGame;
         private float currentTime;
         public int distroyedCactusNumber, numberCactus;
         public GameObject winPanel;

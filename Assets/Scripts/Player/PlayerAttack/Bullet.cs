@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
             playerStats.hp--;
             playerStats.attackerId = shooterId;
         }
-        if (other.tag == "Cactus") other.GetComponent<Cactus>().destroyCactus = true;
+        if (other.tag == "Cactus") other.GetComponent<Cactus>().cactusDestroy();
         Destroy(gameObject);
     }
 }
