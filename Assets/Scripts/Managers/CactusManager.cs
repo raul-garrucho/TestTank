@@ -10,7 +10,6 @@ public class CactusManager : MonoBehaviour
     public int destroyedCactus, nCactus;
     public Text cactusNumText,timeText;
     
-
     private void OnEnable()
     {
         AddCactus();
@@ -21,16 +20,14 @@ public class CactusManager : MonoBehaviour
     }
     private void AddCactus()
     {
-        if (nCactus <= 5)
-        {
+      
             nCactus++;
             float xOffset, zOffset;
             xOffset = Random.Range(75, -75);
             zOffset = Random.Range(75, -75);
             Vector3 ramdonPosition = transform.position + new Vector3(xOffset, 0, zOffset);
             Instantiate(cactusPrefab, ramdonPosition, Quaternion.identity, transform);
-            
-        }
+      
     }
     public void DestroyCactus()
     {
@@ -39,8 +36,8 @@ public class CactusManager : MonoBehaviour
         AddCactus();
         if (destroyedCactus >= 20)
         {
-            destroyedCactus = 0;
-           gameplay.EndOnePlayerGame();
+           destroyedCactus = 0;
+           gameplay.ChangeToExit();
         }
     }
     private void Update()
@@ -49,11 +46,9 @@ public class CactusManager : MonoBehaviour
     }
     private void UiManager()
     {
-        
         cactusNumText.text = destroyedCactus.ToString();
         float minutes = Mathf.FloorToInt(gameplay.currentTime/ 60);
         float seconds = Mathf.FloorToInt(gameplay.currentTime % 60);
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
-
 }

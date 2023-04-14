@@ -25,7 +25,11 @@ namespace Tankprototipe
         }
         private void RefreshUi(float score)
         {
-            finalScore.text = string.Format("Your Score: " + "{0:00}:{1:00}", Mathf.FloorToInt(score / 60), Mathf.FloorToInt(score % 60));
+            float minutes;
+            float seconds;
+            minutes = Mathf.FloorToInt(score / 60);
+            seconds = Mathf.FloorToInt(score % 60);
+            finalScore.text = string.Format( "{0:00}:{1:00}", minutes,seconds);
             for (int i = 0; i < leaderBoard.ranking.Count; i++)
             {
                 rankingTextList[i].text = string.Format((i + 1).ToString() + " - " + "{0:00}:{1:00}", Mathf.FloorToInt(leaderBoard.ranking[i] / 60), Mathf.FloorToInt(leaderBoard.ranking[i] % 60));
@@ -37,7 +41,7 @@ namespace Tankprototipe
             switch (action)
             {
                 case "Retry":
-                    FindObjectOfType<Gameplay>().OnePlayerGame();
+                    FindObjectOfType<Gameplay>().Initialize();
                     break;
                 case "ReturnToMenu":
                     SceneManager.LoadScene("MainMenu");

@@ -20,12 +20,11 @@ public class Gameplay : MonoBehaviour
         fsmGameplay.OnEnterStart += Initialize;
         fsmGameplay.OnEnterOnePlayer += OnePlayerGame;
         fsmGameplay.OnEnterTwoPlayers += TwoPlayerGame;
-        fsmGameplay.OnExitTwoPlayers += EndTwoPlayerGame;
         fsmGameplay.OnExitOnePlayer += EndOnePlayerGame;
-        fsmGameplay.OnExitExit += Exit;
+        fsmGameplay.OnExitExit += EndGame;
         fsmGameplay.ChangeToStar();
     }
-    private void Initialize()
+    public void Initialize()
     {
         switch (manager.gamemodeSelected)
         {
@@ -37,6 +36,11 @@ public class Gameplay : MonoBehaviour
                 break;
         }
     }
+    public void ChangeToExit()
+    {
+        fsmGameplay.ChangeToExit();
+    }
+    
 
     public void OnePlayerGame()
     {
@@ -49,8 +53,8 @@ public class Gameplay : MonoBehaviour
     }
     private void TwoPlayerGame()
     {
-        player1Camera.rect = new Rect(0, -0.5f, 1, 1);
-        player2Camera.rect = new Rect(0, 0.5f, 1, 1);
+        player1Camera.rect = new Rect(0, 0.5f, 1, 1);
+        player2Camera.rect = new Rect(0, -0.5f, 1, 1);
         for (int i = 0; i < multiplayerElementsList.Length; i++)
         {
             multiplayerElementsList[i].SetActive(true);
@@ -60,13 +64,8 @@ public class Gameplay : MonoBehaviour
     {
         oneplayerGame = false;
         leaderBoard.Initialize(currentTime);
-        fsmGameplay.ChangeToExit();
     }
-    public void EndTwoPlayerGame()
-    {
-        fsmGameplay.ChangeToExit();
-    }
-    public void Exit()
+    public void EndGame()
     {
         leaderBoard.transform.gameObject.SetActive(false);
     }
