@@ -28,7 +28,7 @@ public class FMSGameplay : MonoBehaviour
 
         private State currentState = State.None;
 
-        public void ChangeToStar()
+        public void ChangeToStart()
         {
             ChangeState(State.Start);
         }

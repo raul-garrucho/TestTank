@@ -275,7 +275,4 @@ MonoBehaviour:
   boostPerfabsList:
   - {fileID: 646490144874415365, guid: 262404a1d872f02489bffe2828b9c639, type: 3}
   spawnTransform: {fileID: 237337643465183162}
-  selectedBoost: 0
-  respawBoostTime: 5
-  actualRespawnBoostTime: 0
-  activeBoost: 0
+  respawnBoostTime: 1

@@ -9,6 +9,7 @@ public class SceneControll : MonoBehaviour
     private const string SinglePlayer = "SinglePlayer";
     private const string MultiPlayer = "Multiplayer";
     private const string Gameplay = "Gameplay";
+    private const string MainMenu = "MainMenu";
 
     [SerializeField]
     private LevelManager levelManager = null;
@@ -35,6 +36,10 @@ public class SceneControll : MonoBehaviour
     public void Exit()
     {
         fSMMenu.ChangeToExit();
+    }
+    public void ChangeToMenu()
+    {
+        SceneManager.LoadScene(MainMenu);
     }
 
     private void OnEnterOnePlayer()

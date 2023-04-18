@@ -1,3 +1,5 @@
+using Gameplayy;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,50 +7,36 @@ using UnityEngine.UI;
 
 public class CactusManager : MonoBehaviour
 {
-    [SerializeField] GameObject cactusPrefab;
-    [SerializeField] Gameplay gameplay;
-    public int destroyedCactus, nCactus;
-    public Text cactusNumText,timeText;
-    
-    private void OnEnable()
+    [SerializeField] private GameObject cactusPrefab;
+    [SerializeField] private int destroyedCactus;
+    public static event Action <int> cactusDestroy; 
+    private void Awake()
     {
         AddCactus();
         AddCactus();
         AddCactus();
         AddCactus();
-        AddCactus();    
+        AddCactus();
     }
+
     private void AddCactus()
     {
-      
-            nCactus++;
-            float xOffset, zOffset;
-            xOffset = Random.Range(75, -75);
-            zOffset = Random.Range(75, -75);
-            Vector3 ramdonPosition = transform.position + new Vector3(xOffset, 0, zOffset);
-            Instantiate(cactusPrefab, ramdonPosition, Quaternion.identity, transform);
-      
+        float xOffset = UnityEngine.Random.Range(75, -75);
+        float zOffset = UnityEngine.Random.Range(75, -75);
+        Vector3 ramdonPosition = transform.position + new Vector3(xOffset, 0, zOffset);
+        Instantiate(cactusPrefab, ramdonPosition, Quaternion.identity, transform);
+
     }
-    public void DestroyCactus()
+    public void DestroyCactus(GameObject cactus)
     {
+        Destroy(cactus);
         destroyedCactus++;
-        nCactus--;
         AddCactus();
+        cactusDestroy?.Invoke(destroyedCactus);
         if (destroyedCactus >= 20)
         {
-           destroyedCactus = 0;
-           gameplay.ChangeToExit();
+            destroyedCactus = 0;
+            Gameplay.Instance.ChangeToExit("");
         }
-    }
-    private void Update()
-    {
-        UiManager();
-    }
-    private void UiManager()
-    {
-        cactusNumText.text = destroyedCactus.ToString();
-        float minutes = Mathf.FloorToInt(gameplay.currentTime/ 60);
-        float seconds = Mathf.FloorToInt(gameplay.currentTime % 60);
-        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }

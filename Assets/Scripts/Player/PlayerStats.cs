@@ -1,55 +1,78 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using Gameplayy;
+using System;
 //Player Data y Ui Controller
- 
+
 public class PlayerStats : MonoBehaviour
 {
-    public int hp,amountOfAmmo,lifes;
-    public Image shieldImage,ammoImage;
-    public Text amountOfAmmoText,lifesText,winnerText;
-    private PlayerAttack playerAttack;
-    public Transform respawnPoint;
-    public GameObject winPanel,brokenTankPrefab;
-    public string attackerId;
+     private int hp =  1;
+     private int lifes = 3;
+    
+    [SerializeField] private Transform respawnPoint;
+    [SerializeField] public string attackerId;
 
-    private void Awake()
+    [SerializeField] public int playerNum;
+    [SerializeField] public int amountOfAmmo =10;
+    [SerializeField] public float speedModifier = 1 ;
+    public static event Action<int, int,int> hpUpdate;
+    public static event Action<int, int> ammoUpdate;
+
+    private void Start()
     {
-        playerAttack = transform.GetComponent<PlayerAttack>();
-        winPanel.SetActive(false);
-        lifes = 3;
+        speedModifier = 1;
+        amountOfAmmo = 10;
+        ammoUpdate?.Invoke(playerNum, amountOfAmmo);
+        hpUpdate?.Invoke(playerNum, hp,lifes);
     }
-    private void Update()
+    public void velocityBoost(float modifier)
     {
-        statsController();
-        UiController();
+        speedModifier = modifier;
+        StartCoroutine(CountTime());
     }
-    private void UiController()
+    public void AddAmmo(int addedAmmo)
     {
-        amountOfAmmo = playerAttack.amountOfAmmo;
-        ammoImage.fillAmount = playerAttack.actualRechargTime / playerAttack.rechargtime;
-        amountOfAmmoText.text = amountOfAmmo.ToString();
-        lifesText.text = lifes.ToString();
-        if (hp > 1) shieldImage.enabled = true;
-        else shieldImage.enabled = false;
+        amountOfAmmo = amountOfAmmo + addedAmmo;
+        amountOfAmmo = Mathf.Clamp(amountOfAmmo, 0, 15);
+        ammoUpdate?.Invoke(playerNum,amountOfAmmo);
     }
-    private void statsController()
+    public void AddShield()
     {
-        hp = Mathf.Clamp(hp, 0, 2);
+        hp++;
+        hpUpdate?.Invoke(playerNum,hp,lifes);
+        hp = Mathf.Clamp(hp, 0, 3);
+    }
+    public void Dmg()
+    {
+        hp--;
+        hpUpdate?.Invoke(playerNum, hp,lifes);
         if (hp < 1)
         {
             lifes--;
             hp = 1;
-            Instantiate(brokenTankPrefab, transform.position, Quaternion.identity);
             transform.position = respawnPoint.position;
         }
         if (lifes < 1)
-        {
-            winPanel.SetActive(true);
-            winnerText.text = attackerId;
+        {          
+            Gameplay.Instance.ChangeToExit(attackerId);//¿?
             lifes = 3;
-            FindObjectOfType<Gameplay>().ChangeToExit();
+        }
+    }
+    IEnumerator CountTime()
+    {
+        WaitForEndOfFrame wait = new WaitForEndOfFrame();
+        bool velocityBost = true;
+        float currentTime = 0;
+        while (velocityBost)
+        {
+            currentTime += Time.deltaTime;
+            if(currentTime > 2)
+            {
+                speedModifier = 1;
+                velocityBost = false;
+            }
+            yield return wait;
         }
     }
 }

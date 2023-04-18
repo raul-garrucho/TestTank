@@ -277,7 +277,4 @@ MonoBehaviour:
   - {fileID: 1154163271529451750, guid: 0e05155642536c544bffaea74c185202, type: 3}
   - {fileID: 3972449880728735258, guid: e08fe0db375a4d843a8331b351f87571, type: 3}
   spawnTransform: {fileID: 237337643465183162}
-  selectedBoost: 0
-  respawBoostTime: 5
-  actualRespawnBoostTime: 0
-  activeBoost: 0
+  respawnBoostTime: 5

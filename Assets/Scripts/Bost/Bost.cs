@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//Recarga la municion de los tanques
-public class AmmoRefill : MonoBehaviour
+
+public abstract class Bost : MonoBehaviour
 {
-    public float rotationSpeed;
-    public int numberOfRefill;
+    [SerializeField] private float rotationSpeed;
+    [SerializeField] private float spawnTime;
     private SpawnManager spawnManager;
+   
+    public abstract void Bosst(PlayerStats player);
 
     private void Awake()
     {
@@ -14,17 +16,16 @@ public class AmmoRefill : MonoBehaviour
     }
     private void Update()
     {
-        transform.Rotate(transform.up*rotationSpeed);
+        transform.Rotate(transform.up * rotationSpeed);
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            PlayerAttack playerAttack = other.GetComponent<PlayerAttack>();
-            playerAttack.amountOfAmmo = playerAttack.amountOfAmmo + numberOfRefill;
-            spawnManager.activeBoost = false;
             Destroy(gameObject);
+            PlayerStats player = other.GetComponent<PlayerStats>();
+            Bosst(player);
+            spawnManager.RespawnCooldown();
         }
     }
 }

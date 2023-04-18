@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 646490144874415366}
-  - component: {fileID: 646490144874415367}
   - component: {fileID: 646490144874415364}
+  - component: {fileID: 2166818280157382091}
   m_Layer: 0
   m_Name: AmmoRefill
   m_TagString: Untagged
@@ -35,20 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &646490144874415367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 646490144874415365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c35dad7aaf95c6f4fadad506a4b96401, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 1.5
-  numberOfRefill: 5
 --- !u!65 &646490144874415364
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -62,6 +48,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0091739, y: 1.0907369, z: 1}
   m_Center: {x: 0.004586935, y: 0.1783092, z: 0}
+--- !u!114 &2166818280157382091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 646490144874415365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2b1d5f4084ce040891217d3f94dcd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 2
+  spawnTime: 5
+  ammo: 5
 --- !u!1 &646490146341529839
 GameObject:
   m_ObjectHideFlags: 0
