@@ -8,5 +8,6 @@ public class Ammorefill : Bost
     public override void Bosst(PlayerStats player)
     {
         player.AddAmmo(ammo);
+        PoolManager.Instance.AddAmmo(this);
     }
 }

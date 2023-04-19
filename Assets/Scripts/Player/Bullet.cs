@@ -7,17 +7,13 @@ public class Bullet : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float shootForce;
     [SerializeField] private string shooterId;
-    [SerializeField]
-    private PoolManager poolManager = null;
 
-    private void Awake()
-    {
-        rb.AddForce(transform.forward * shootForce, ForceMode.Impulse);
-    }
+
     public void setId(string id)
     {
         shooterId = id;
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -28,11 +24,18 @@ public class Bullet : MonoBehaviour
         }
         if (other.tag == "Cactus")
         {
-            FindObjectOfType<CactusManager>().DestroyCactus(other.transform.gameObject);
+            CactusManager.Instance.DestroyCactus(other.transform.gameObject);
         }
+        rb.velocity = new Vector3(0, 0, 0);
+        gameObject.SetActive(false);
+        PoolManager.Instance.AddToQueue(this);
+    }
 
-        //TODO deshabilitarlo
-
-        poolManager.AddToQueue(this);
+    public void SetBullet(Vector3 firepoint, Quaternion direction)
+    {
+        transform.position = firepoint;
+        transform.rotation = direction;
+        gameObject.SetActive(true);
+        rb.AddForce(transform.forward * shootForce, ForceMode.Impulse);
     }
 }

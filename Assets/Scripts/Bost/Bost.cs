@@ -22,10 +22,15 @@ public abstract class Bost : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Destroy(gameObject);
             PlayerStats player = other.GetComponent<PlayerStats>();
             Bosst(player);
-            spawnManager.RespawnCooldown();
+            gameObject.SetActive(false);
+            spawnManager.ChangeToempty();
         }
+    }
+    public void SetBost(Vector3 spawnPoint)
+    {
+        transform.position = spawnPoint;
+        gameObject.SetActive(true);
     }
 }

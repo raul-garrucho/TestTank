@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e56305c887ffba46aacb315a90ce88c, type: 3}
   m_Name: LevelManager
   m_EditorClassIdentifier: 
-  gamemodeSelected: SinglePlayer
+  gamemodeSelected: Multiplayer

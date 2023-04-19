@@ -273,6 +273,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawn Ammo (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 237337644356047678, guid: bd0a7ae26c8ecfa4c942781010a88400, type: 3}
+      propertyPath: poolManager
+      value: 
+      objectReference: {fileID: 1827865311}
     - target: {fileID: 237337644356047679, guid: bd0a7ae26c8ecfa4c942781010a88400, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1167,7 +1171,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3813740266180674639, guid: 194e8fb2f43c2f3489d51c1d3964a9e9, type: 3}
   rotationSpeed: 0.5
   shootCD: 2
-  poolManager: {fileID: 0}
+  poolManager: {fileID: 1827865311}
 --- !u!114 &306874254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3184,6 +3188,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawn (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 237337644356047678, guid: 0358e27f0622ce44d868d77a776ccc0d, type: 3}
+      propertyPath: poolManager
+      value: 
+      objectReference: {fileID: 1827865311}
     - target: {fileID: 237337644356047679, guid: 0358e27f0622ce44d868d77a776ccc0d, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3758,6 +3766,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawn Ammo (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 237337644356047678, guid: bd0a7ae26c8ecfa4c942781010a88400, type: 3}
+      propertyPath: poolManager
+      value: 
+      objectReference: {fileID: 1827865311}
     - target: {fileID: 237337644356047679, guid: bd0a7ae26c8ecfa4c942781010a88400, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -4816,6 +4828,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawn (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 237337644356047678, guid: 0358e27f0622ce44d868d77a776ccc0d, type: 3}
+      propertyPath: poolManager
+      value: 
+      objectReference: {fileID: 1827865311}
     - target: {fileID: 237337644356047679, guid: 0358e27f0622ce44d868d77a776ccc0d, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -6288,6 +6304,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawn (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 237337644356047678, guid: 0358e27f0622ce44d868d77a776ccc0d, type: 3}
+      propertyPath: poolManager
+      value: 
+      objectReference: {fileID: 1827865311}
     - target: {fileID: 237337644356047679, guid: 0358e27f0622ce44d868d77a776ccc0d, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -7590,6 +7610,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawn Ammo
       objectReference: {fileID: 0}
+    - target: {fileID: 237337644356047678, guid: bd0a7ae26c8ecfa4c942781010a88400, type: 3}
+      propertyPath: poolManager
+      value: 
+      objectReference: {fileID: 1827865311}
     - target: {fileID: 237337644356047679, guid: bd0a7ae26c8ecfa4c942781010a88400, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -7948,7 +7972,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3813740266180674639, guid: 194e8fb2f43c2f3489d51c1d3964a9e9, type: 3}
   rotationSpeed: 0.5
   shootCD: 0
-  poolManager: {fileID: 0}
+  poolManager: {fileID: 1827865311}
 --- !u!114 &1657226808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8541,6 +8565,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawn (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 237337644356047678, guid: 0358e27f0622ce44d868d77a776ccc0d, type: 3}
+      propertyPath: poolManager
+      value: 
+      objectReference: {fileID: 1827865311}
     - target: {fileID: 237337644356047679, guid: 0358e27f0622ce44d868d77a776ccc0d, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -8776,6 +8804,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawn Ammo (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 237337644356047678, guid: bd0a7ae26c8ecfa4c942781010a88400, type: 3}
+      propertyPath: poolManager
+      value: 
+      objectReference: {fileID: 1827865311}
     - target: {fileID: 237337644356047679, guid: bd0a7ae26c8ecfa4c942781010a88400, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -8904,6 +8936,7 @@ GameObject:
   - component: {fileID: 1827865307}
   - component: {fileID: 1827865310}
   - component: {fileID: 1827865308}
+  - component: {fileID: 1827865311}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -8965,6 +8998,18 @@ MonoBehaviour:
   - {fileID: 351861115}
   player1Camera: {fileID: 901311799}
   player2Camera: {fileID: 338729989}
+--- !u!114 &1827865311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827865305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98fc351f960c24748ac207db6c6303f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1852267308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8976,6 +9021,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawn
       objectReference: {fileID: 0}
+    - target: {fileID: 237337644356047678, guid: 0358e27f0622ce44d868d77a776ccc0d, type: 3}
+      propertyPath: poolManager
+      value: 
+      objectReference: {fileID: 1827865311}
     - target: {fileID: 237337644356047679, guid: 0358e27f0622ce44d868d77a776ccc0d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -9675,6 +9724,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawn Ammo (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 237337644356047678, guid: bd0a7ae26c8ecfa4c942781010a88400, type: 3}
+      propertyPath: poolManager
+      value: 
+      objectReference: {fileID: 1827865311}
     - target: {fileID: 237337644356047679, guid: bd0a7ae26c8ecfa4c942781010a88400, type: 3}
       propertyPath: m_RootOrder
       value: 2

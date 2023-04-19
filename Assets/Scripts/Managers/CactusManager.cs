@@ -3,10 +3,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class CactusManager : MonoBehaviour
 {
+    public static CactusManager Instance;
     [SerializeField] private GameObject cactusPrefab;
     [SerializeField] private int destroyedCactus;
     public static event Action <int> cactusDestroy; 
@@ -17,6 +18,7 @@ public class CactusManager : MonoBehaviour
         AddCactus();
         AddCactus();
         AddCactus();
+        Instance = this;
     }
 
     private void AddCactus()

@@ -8,5 +8,6 @@ public class Vboost : Bost
     public override void Bosst(PlayerStats player)
     {
         player.velocityBoost(speedMod);
+        PoolManager.Instance.AddVbodt(this);
     }
 }

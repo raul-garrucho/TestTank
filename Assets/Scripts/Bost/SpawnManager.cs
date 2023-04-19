@@ -5,33 +5,100 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] boostPerfabsList;
+    [SerializeField] private PoolManager poolManager;
     [SerializeField] private Transform spawnTransform;
     [SerializeField] private float respawnBoostTime;
- 
-    private void Start()
+    private State currentState;
+
+    private void Awake()
+    {
+        ChangeToempty();
+    }
+    private enum State
+    {
+        None,
+        Empty,
+        AmmoRefill,
+        VelocityBost,
+        Shield
+    }
+    public void ChangeToempty()
+    {
+        ChangeState(State.Empty);
+    }
+    private void ChangeState(State state)
+    {
+        currentState = state;
+        OnEnter();
+    }
+    private void OnEnter()
+    {
+        switch (currentState)
+        {
+            case State.Empty:
+                OnEnterEmpy();
+                break;
+            case State.AmmoRefill:
+                OnEnterAmmoRefill();
+                break;
+            case State.VelocityBost:
+                OnEnterVelocityBost();
+                break;
+            case State.Shield:
+                OnEnterShield();
+                break;
+        }
+    }
+  
+    private void OnEnterEmpy()
     {
         StartCoroutine(CountTime());
     }
-    public void RespawnCooldown()
+    private void OnEnterAmmoRefill()
     {
-        StartCoroutine(CountTime());
+        Ammorefill bost = null;
+        if (poolManager.IsAmmoreFills)
+        {
+            Instantiate(boostPerfabsList[0],spawnTransform);
+        }
+        else
+        {
+            bost = poolManager.GetAmmorefill();
+            bost.SetBost(spawnTransform.position);
+        }
     }
+    private void OnEnterVelocityBost()
+    {
+        Vboost bost = null;
+        if (poolManager.IsVbosstEmpty)
+        {
+            Instantiate(boostPerfabsList[1], spawnTransform);
+        }
+        else
+        {
+            bost = poolManager.GetVbost();
+            bost.SetBost(spawnTransform.position);
+        }
+    }
+    private void OnEnterShield()
+    {
+        Shield bost = null;
+        if (poolManager.IsShields)
+        {
+            Instantiate(boostPerfabsList[2], spawnTransform);
+        }
+        else
+        {
+            bost = poolManager.GetShield();
+            bost.SetBost(spawnTransform.position);
+        }
+    }
+
     IEnumerator CountTime()
     {
-        WaitForEndOfFrame wait = new WaitForEndOfFrame();
-        bool emptySpawn = true;
-        float currentTime = 0;
-        while (emptySpawn)
-        {
-            currentTime += Time.deltaTime;
-            if (currentTime >= respawnBoostTime)
-            {
-                emptySpawn = false;
-                currentTime = 0;
-                int selectedBoost = Random.Range(0, boostPerfabsList.Length);
-                Instantiate(boostPerfabsList[selectedBoost], spawnTransform);
-            }
-                yield return wait;
-        }
+        WaitForSecondsRealtime waitForSecondsRealtime = new WaitForSecondsRealtime(respawnBoostTime);
+        yield return waitForSecondsRealtime;
+        int selectedBoost = Random.Range(2,boostPerfabsList.Length+2);
+        ChangeState((State)selectedBoost);
     }
 }

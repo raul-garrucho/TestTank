@@ -47,16 +47,15 @@ public class PlayerAttack : MonoBehaviour
 
         if (poolManager.IsPoolEmpty)
         {
-            GameObject gBullet = Instantiate(bulletPrefab, firePoint.position, lookDirectio);
+            GameObject gBullet = Instantiate(bulletPrefab, firePoint.position, lookDirectio, transform);
             bullet = gBullet.GetComponent<Bullet>();
         }
         else
         {
             bullet = poolManager.GetFromQueue();
-
-            //TODO habilitar
         }
 
+        bullet.SetBullet(firePoint.position, lookDirectio);
         bullet.setId(data.attackerId);
 
         StartCoroutine(RechargTime());
